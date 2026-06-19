@@ -7,7 +7,8 @@
   <link rel="icon" type="image/png" href="img/favicon.png">
   <style>
     :root{--bg:#020617;--card:#0f172a;--muted:#94a3b8;--text:#e5e7eb;--cyan:#67e8f9;--blue:#60a5fa;--white:#fff;--line:rgba(255,255,255,.1);--accent:#34d399;--glow:rgba(103,232,249,.28)}
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.6;overflow-x:hidden;-webkit-text-size-adjust:100%}
+    .btn,.chip,.lang-toggle,.mobile-menu-btn,.nav-links a{touch-action:manipulation;min-height:44px}
     body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:radial-gradient(rgba(255,255,255,.18) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(to bottom,#000,transparent 75%)}
 
     /* ===== SMOOTH LANGUAGE TRANSITION ===== */
@@ -49,6 +50,7 @@
     .hero{position:relative;overflow:hidden;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:48px 48px}
     .hero:before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:760px;height:560px;border-radius:50%;background:rgba(103,232,249,.1);filter:blur(70px)}
     .hero-grid{position:relative;z-index:1;min-height:calc(100vh - 76px);display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:70px 0}
+    @media(max-width:768px){.hero-grid{min-height:calc(100vh - 64px)}}
 
     /* ===== HERO TAGLINE BANNER ===== */
     .tagline-banner{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(103,232,249,.12),rgba(96,165,250,.12));border:1px solid rgba(103,232,249,.22);border-radius:999px;padding:10px 20px;margin-bottom:20px;animation:glow-pulse 3s ease-in-out infinite}
@@ -119,6 +121,7 @@
     .price-badge{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;padding:4px 10px;border-radius:999px;background:var(--cyan);color:#06111f;font-weight:700;width:fit-content}
 
     /* ===== RESPONSIVE ===== */
+    .mobile-wa-btn{display:none}
     @media(max-width:1024px){
       .hero-grid{grid-template-columns:1fr;gap:40px;padding:50px 0}
       .services{grid-template-columns:1fr}
@@ -127,17 +130,90 @@
       .team{grid-template-columns:1fr 1fr}
       .process{grid-template-columns:1fr}
       .trust-bar{grid-template-columns:1fr 1fr}
-      .contact{grid-template-columns:1fr;gap:40px}
+      .contact{grid-template-columns:1fr;gap:40px;padding:40px 28px}
+      .section{padding:80px 0}
+      .gallery{grid-template-columns:1fr 1fr}
     }
     @media(max-width:768px){
       .nav-links{display:none}.mobile-menu-btn{display:block}
-      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:76px;left:0;right:0;background:rgba(2,6,23,.98);backdrop-filter:blur(20px);padding:20px;gap:16px;border-bottom:1px solid var(--line)}
-      .hero h1{font-size:clamp(36px,8vw,56px)}
+      .nav-whatsapp{display:none}
+      .mobile-wa-btn{display:inline-flex!important;margin-top:8px;text-align:center;justify-content:center}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:76px;left:0;right:0;background:rgba(2,6,23,.98);backdrop-filter:blur(20px);padding:20px;gap:16px;border-bottom:1px solid var(--line);z-index:50}
+      .hero h1{font-size:clamp(32px,7vw,48px)}
+      .lead{font-size:16px}
       .stats{grid-template-columns:1fr 1fr}
       .project-grid{grid-template-columns:1fr}
       .team{grid-template-columns:1fr}
       .trust-bar{grid-template-columns:1fr}
       .footer .wrap{flex-direction:column;gap:10px;text-align:center}
+      .section{padding:60px 0}
+      .center{margin-bottom:40px}
+      .center h2{font-size:clamp(26px,5vw,36px)}
+      .center p{font-size:15px}
+      .contact{padding:32px 20px;border-radius:24px}
+      .contact h2{font-size:clamp(24px,5vw,32px)}
+      .panel{padding:24px 20px}
+      .service{padding:24px 20px}
+      .team-card{padding:24px 20px}
+      .price-card{padding:24px 20px}
+      .gallery{grid-template-columns:1fr 1fr}
+      .featured .featured-grid > div:last-child{padding:20px!important}
+      .tagline-banner .tagline-text{font-size:13px}
+      .chips{gap:8px}
+      .chip{font-size:11px;padding:7px 10px}
+      .actions .btn{padding:12px 18px;font-size:12px}
+      .nav .brand span:not(.logo){display:none}
+      .nav-inner{height:64px}
+      .nav-links.open{top:64px}
+      .cover{min-height:240px}
+    }
+    @media(max-width:480px){
+      .wrap{width:calc(100% - 24px)}
+      .showcase{animation:none}
+      .hero-grid{padding:32px 0;gap:28px;min-height:auto}
+      .hero h1{font-size:clamp(28px,8vw,38px);letter-spacing:-.04em}
+      .lead{font-size:15px;margin-top:20px}
+      .stats{grid-template-columns:1fr 1fr;gap:10px}
+      .stat{padding:14px;border-radius:18px}
+      .stat strong{font-size:22px}
+      .stat span{font-size:11px}
+      .section{padding:48px 0}
+      .center{margin-bottom:32px}
+      .center h2{font-size:clamp(22px,6vw,30px)}
+      .contact{padding:24px 16px;border-radius:20px;gap:28px}
+      .contact h2{font-size:clamp(22px,5.5vw,28px)}
+      .panel{padding:20px 16px;border-radius:18px}
+      .service{padding:20px 16px}
+      .team-card{padding:20px 16px}
+      .price-card{padding:20px 16px}
+      .gallery{grid-template-columns:1fr;gap:8px}
+      .actions{flex-direction:column}
+      .actions .btn{width:100%;text-align:center}
+      .tagline-banner{padding:8px 14px;gap:8px}
+      .tagline-banner .tagline-text{font-size:12px}
+      .pill{font-size:12px;padding:6px 12px}
+      .chips{gap:6px;margin-top:20px}
+      .chip{font-size:10px;padding:6px 8px}
+      .card{border-radius:22px}
+      .shot{border-radius:22px 22px 0 0}
+      .featured .featured-grid > div:last-child{padding:16px!important}
+      .featured .gallery{margin-top:14px}
+      .featured .stack{margin-top:12px}
+      .featured .actions{margin-top:12px}
+      .cover{min-height:200px}
+      .mini-grid{grid-template-columns:1fr}
+      .offer{padding:20px 16px 12px}
+      .mini{margin:10px 16px 16px!important}
+      .topbar{padding:14px 16px}
+      .price-tag{font-size:24px}
+      .trust-item{padding:20px 16px}
+      .trust-item .trust-icon{font-size:28px}
+      .trust-item h4{font-size:16px}
+      .trust-item p{font-size:13px}
+      .cap span{font-size:11px;padding:7px 12px}
+      .footer{padding:20px 0;font-size:12px}
+      .smallbrand{gap:8px}
+      .smallbrand .logo{width:30px;height:30px;border-radius:10px}
     }
 
     /* ===== ANIMATIONS ===== */
@@ -177,6 +253,7 @@
         <a href="#pricing" data-en="Pricing" data-ar="الأسعار">Pricing</a>
         <a href="#team" data-en="Capabilities" data-ar="قدراتنا">Capabilities</a>
         <a href="#contact" data-en="Contact" data-ar="تواصل معنا">Contact</a>
+        <a class="btn btn-primary mobile-wa-btn" href="https://wa.me/201557605683" data-en="WhatsApp" data-ar="واتساب">WhatsApp</a>
       </nav>
       <div style="display:flex;align-items:center;gap:12px">
         <div class="lang-toggle" id="langToggle" onclick="toggleLang()">
@@ -184,7 +261,7 @@
           <div class="lang-option active" id="optEn" data-lang="en">EN</div>
           <div class="lang-option" id="optAr" data-lang="ar">عربي</div>
         </div>
-        <a class="btn btn-line" href="https://wa.me/201557605683" data-en="WhatsApp" data-ar="واتساب">WhatsApp</a>
+        <a class="btn btn-line nav-whatsapp" href="https://wa.me/201557605683" data-en="WhatsApp" data-ar="واتساب">WhatsApp</a>
         <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
       </div>
     </div>
@@ -663,6 +740,8 @@
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks.classList.contains('open')) navLinks.classList.remove('open');
         const target = document.querySelector(a.getAttribute('href'));
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
